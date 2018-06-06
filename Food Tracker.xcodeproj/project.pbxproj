@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521B70AB20C7891C005FAF52 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B70AA20C7891C005FAF52 /* RatingControl.swift */; };
 		526031D8206DC31500090501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526031D7206DC31500090501 /* AppDelegate.swift */; };
 		526031DA206DC31500090501 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526031D9206DC31500090501 /* ViewController.swift */; };
 		526031DD206DC31500090501 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526031DB206DC31500090501 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		521B70AA20C7891C005FAF52 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		526031D4206DC31400090501 /* Food Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		526031D7206DC31500090501 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		526031D9206DC31500090501 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			children = (
 				526031D7206DC31500090501 /* AppDelegate.swift */,
 				526031D9206DC31500090501 /* ViewController.swift */,
+				521B70AA20C7891C005FAF52 /* RatingControl.swift */,
 				526031DB206DC31500090501 /* Main.storyboard */,
 				526031DE206DC31500090501 /* Assets.xcassets */,
 				526031E0206DC31500090501 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526031DA206DC31500090501 /* ViewController.swift in Sources */,
+				521B70AB20C7891C005FAF52 /* RatingControl.swift in Sources */,
 				526031D8206DC31500090501 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
