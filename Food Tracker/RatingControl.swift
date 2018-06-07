@@ -13,7 +13,11 @@ import os.log
 
     //MARK: variables
     private var ratingButtons = [UIButton]()
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            updateButtonSelectionStates()
+        }
+    }
     
     //MARK: properties
     @IBInspectable var starSize: CGSize = CGSize(width: 44, height: 44) {
@@ -55,7 +59,7 @@ import os.log
         let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: self.traitCollection)
         let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: self.traitCollection)
 
-        for _ in 0..<starCount {
+        for index in 0..<starCount {
             // create the button
             let button = UIButton()
             // set button images
@@ -71,6 +75,8 @@ import os.log
             
             button.addTarget(self, action: #selector(RatingControl.ratingButtonPressed(button:)), for: .touchUpInside)
             
+            button.accessibilityLabel = "Set \(index + 1) star rating"
+
             // adds the button to the view
             addArrangedSubview(button)
             
@@ -78,8 +84,42 @@ import os.log
         }
     }
     
+    private func updateButtonSelectionStates() {
+        for (index, button) in ratingButtons.enumerated(){
+            button.isSelected = index < rating
+            
+            let hintString: String?
+            if rating == index + 1 {
+                hintString = "Tap to reset to 0"
+            } else {
+                hintString = nil
+            }
+            
+            let valueString: String
+            switch (rating) {
+            case 0:
+                valueString = "No Raing Set"
+            default:
+                valueString = "\(rating) stars set"
+            }
+            button.accessibilityHint = hintString
+            button.accessibilityValue = valueString
+        }
+    }
     //MARK: Button action
     @objc func ratingButtonPressed(button: UIButton){
-        print("Rating button pressed")
+        guard let index = ratingButtons.index(of: button) else {
+            fatalError("The button, \(button), is not in the ratings button array: \(ratingButtons)")
+        }
+        
+        let selectedRating = index + 1
+        
+        if selectedRating == rating {
+            rating = 0
+        } else {
+            rating = selectedRating
+        }
     }
+    
+
 }
