@@ -35,8 +35,8 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXx-1P-olZ">
-                                        <rect key="frame" x="104" y="66.5" width="151" height="30"/>
-                                        <state key="normal" title="Set Default Label Text"/>
+                                        <rect key="frame" x="128" y="66.5" width="103" height="30"/>
+                                        <state key="normal" title="Modify Ratings"/>
                                         <connections>
                                             <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6fD-Jb-Ows"/>
                                         </connections>

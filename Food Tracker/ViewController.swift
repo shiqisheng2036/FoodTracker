@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     
+    var num = 0
+    var hasHit5 = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,6 +27,20 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     //MARK: Actions
     @IBAction func setDefaultLabelText(_ sender: UIButton) {
         mealNameLabel.text = "Default Text"
+        
+        if num == 5 {
+            hasHit5 = true
+        } else if num == 0 {
+            hasHit5 = false
+        }
+        
+        if hasHit5 == true {
+            num -= 1
+        } else {
+            num += 1
+        }
+        
+        ratingControl.rating = num
     }
  
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
