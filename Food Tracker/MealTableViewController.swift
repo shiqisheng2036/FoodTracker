@@ -38,6 +38,15 @@ class MealTableViewController: UITableViewController {
         return meals.count
     }
     
+    //MARK: Actions
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue){
+        if let sourceViewController = sender.source as? ViewController, let meal = sourceViewController.meal {
+            let newIndexPath  = IndexPath (row: meals.count, section: 0)
+            meals.append(meal)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
+    
     //MARK: Private funcs
     private func loadSampleMeals(){
         let photo1 = UIImage(named: "meal1")
@@ -47,10 +56,10 @@ class MealTableViewController: UITableViewController {
         guard let meal1 = Meal(name: "LibX", photo: photo1, rating: 5) else {
             fatalError("can't init meal")
         }
-        guard let meal2 = Meal(name: "Meal2", photo: photo2, rating: 4) else {
+        guard let meal2 = Meal(name: "Shiqi Sheng", photo: photo2, rating: 4) else {
             fatalError("Can't init meal")
         }
-        guard let meal3 = Meal(name: "Meal3", photo: photo3, rating: 3) else {
+        guard let meal3 = Meal(name: "Supreme", photo: photo3, rating: 3) else {
             fatalError("can't inti meal")
         }
         meals += [meal1,meal2,meal3]

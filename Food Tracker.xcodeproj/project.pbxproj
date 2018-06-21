@@ -107,12 +107,12 @@
 			children = (
 				52A7DA1320CE97FB000A314C /* Meal.swift */,
 				526031D7206DC31500090501 /* AppDelegate.swift */,
+				526031DE206DC31500090501 /* Assets.xcassets */,
 				526031D9206DC31500090501 /* ViewController.swift */,
 				521B70AA20C7891C005FAF52 /* RatingControl.swift */,
 				526031DB206DC31500090501 /* Main.storyboard */,
 				5263B70720DA027800278B2A /* MealTableViewController.swift */,
 				525668C020CF73D400D3F1E3 /* MealUITableViewCell.swift */,
-				526031DE206DC31500090501 /* Assets.xcassets */,
 				526031E0206DC31500090501 /* LaunchScreen.storyboard */,
 				526031E3206DC31500090501 /* Info.plist */,
 			);

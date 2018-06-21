@@ -15,6 +15,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    var meal: Meal?
     
     var num = 0
     var hasHit5 = false
@@ -22,6 +25,24 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         nameTextField.delegate = self
+        
+        updateSaveButtonState()
+    }
+    
+    //MARK: Navigations
+    
+    //Configure view controller before it's presented
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let button = sender as? UIBarButtonItem, button == saveButton else {
+            os_log("save button not pressed", log: OSLog.default, type: .debug)
+            return
+        }
+        let name = nameTextField.text ?? ""
+        let photo = photoImageView.image
+        let rating = ratingControl.rating
+        
+        meal = Meal(name: name, photo: photo, rating: rating)
     }
     
     //MARK: Actions
@@ -43,6 +64,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         ratingControl.rating = num
     }
  
+    @IBAction func cancelMeal(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         // Hide the keyboard.
         nameTextField.resignFirstResponder()
@@ -61,8 +86,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
+    }
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         mealNameLabel.text = textField.text
+        
+        updateSaveButtonState()
+        navigationItem.title = textField.text
     }
     
     //MARK: UIImagePickerControllerDelegate
@@ -84,4 +117,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
+    
+    //MARK: private funcs
+    private func updateSaveButtonState(){
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+        
+    }
+    
+    
 }
