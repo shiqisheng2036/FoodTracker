@@ -26,6 +26,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         // Do any additional setup after loading the view, typically from a nib.
         nameTextField.delegate = self
         
+        if let meal = meal {
+            navigationItem.title = meal.name
+            ratingControl.rating = meal.rating
+            photoImageView.image = meal.photo
+            nameTextField.text = meal.name
+        }
+        
         updateSaveButtonState()
     }
     
@@ -65,9 +72,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
  
     @IBAction func cancelMeal(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddMealMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+        
     }
-    
+  
     @IBAction func selectImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         // Hide the keyboard.
         nameTextField.resignFirstResponder()
